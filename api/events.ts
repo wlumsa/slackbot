@@ -3,7 +3,6 @@ import { sendGPTResponse } from './_chat'
 export const config = {
   maxDuration:10,
 }
-
 async function isValidSlackRequest(request: Request, body: any) {
   const signingSecret = process.env.SLACK_SIGNING_SECRET!
   const timestamp = request.headers.get('X-Slack-Request-Timestamp')!
@@ -33,6 +32,11 @@ export async function POST(request: Request) {
         await sendGPTResponse(body.event)
         return new Response('Success!', { status: 200 })
       }
+      else if (eventType === 'message.im') {
+        await sendGPTResponse(body.event)
+        return new Response('Success!', { status: 200 })
+      }
+  
     }
   }
 
