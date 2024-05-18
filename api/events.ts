@@ -32,11 +32,6 @@ export async function POST(request: Request) {
         await sendGPTResponse(body.event)
         return new Response('Success!', { status: 200 })
       }
-      else if (eventType === 'message.im') {
-        await sendGPTResponse(body.event)
-        return new Response('Success!', { status: 200 })
-      }
-  
     }
   }
 
